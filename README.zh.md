@@ -210,4 +210,10 @@ harness-engineering-skill/
 
 ---
 
+### 参考与致谢
+
+整理思路时参考 [掘金文章](https://juejin.cn/post/7620226704209592360)，感谢原作者的分享。
+
+---
+
 *Built with ❤️ for AI Agent Engineering*

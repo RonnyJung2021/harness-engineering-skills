@@ -210,4 +210,10 @@ This project is licensed under the MIT License.
 
 ---
 
+### Reference & thanks
+
+Some ideas in this repo were informed by [this article on Juejin](https://juejin.cn/post/7620226704209592360). Thank you to the author for sharing.
+
+---
+
 *Built with ❤️ for AI Agent Engineering*
