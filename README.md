@@ -1,219 +1,81 @@
-# ⚙️ Harness Engineering Skill
+# ⚙️ Harness Engineering Skills
 
-> 构建稳定、可投入生产的 AI Agent 的工程方法论
+> **一套面向 Cursor 的 Agent Skill 合集**：Harness 方法论、分版本规划、可执行指南与两类「图谱」分析——让代理在**有边界、有证据、少扫仓**的前提下干活。
 
-![Harness Engineering](https://img.shields.io/badge/Harness-Engineering-blueviolet.svg)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-green.svg)
-![Version](https://img.shields.io/badge/Version-1.0.0-orange.svg)
-
----
-
-## 📋 概述
-
-**Harness Engineering** 是构建**环境系统**的学科，这套系统使 AI Agent 能够在生产环境中被**可靠控制**并**稳定运行**。
-
-> **核心公式**: `Agent = Loop(Model + Harness)`
-
-在这个公式中：
-- **Model** — 大语言模型，提供推理能力
-- **Harness** — 环境系统，提供约束、反馈和稳定性
-- **Loop** — 持续迭代的执行循环
+[![Cursor](https://img.shields.io/badge/Cursor-Agent%20Skills-000000?logo=cursor&logoColor=white)](https://cursor.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/RonnyJung2021/harness-engineering-skill/pulls)
 
 ---
 
-## 🎯 八大核心要素
+## 📋 这是什么
 
-每个成熟的 Harness 系统必须解决以下八个关键问题：
-
-| # | 要素 | 核心问题 | 重要性 |
-|---|------|----------|--------|
-| 1️⃣ | **任务表达** | 任务如何被声明？输入/输出契约必须无歧义 | ⭐⭐⭐⭐⭐ |
-| 2️⃣ | **上下文组织** | Agent 接收什么上下文？只传递任务相关信息 | ⭐⭐⭐⭐⭐ |
-| 3️⃣ | **工具治理** | 工具如何被发现、验证和拦截？ | ⭐⭐⭐⭐ |
-| 4️⃣ | **状态管理** | 状态如何被保存、恢复和裁剪？ | ⭐⭐⭐⭐ |
-| 5️⃣ | **反馈回路** | 执行反馈如何回流给模型？ | ⭐⭐⭐⭐⭐ |
-| 6️⃣ | **错误分类** | 错误如何被分类、重试或升级？ | ⭐⭐⭐ |
-| 7️⃣ | **安全边界** | 危险操作如何在运行时被阻止？ | ⭐⭐⭐⭐⭐ |
-| 8️⃣ | **验证机制** | 系统如何验证任务实际完成？ | ⭐⭐⭐⭐ |
-
----
-
-## 🏗️ 五层架构设计
-
-### Layer 1: 上下文装配系统
-Prompt 不是静态文档——它是**动态装配系统**。
-
-**装配优先级**:
-1. **基础模板** — 固定的系统提示框架
-2. **用户偏好** — SOUL.md 中定义的用户设置
-3. **项目上下文** — AGENTS.md 中的项目配置
-4. **技能集合** — 当前可用的 Skills
-5. **工具描述** — 工具的自然语言描述
-6. **工具定义** — 工具的 JSON Schema
-
-**核心原则**: 不同信息源有不同的优先级、新鲜度和职责。不要把所有内容塞进一个大 prompt。
-
----
-
-### Layer 2: 工具治理系统
-工具复杂度会立即上升，需构建完整的治理体系：
-
-| 组件 | 职责 |
-|------|------|
-| 🔍 **发现** | 模型如何找到可用工具 |
-| ✅ **验证** | 参数如何被检查和校验 |
-| 🎚️ **风险分级** | 工具按风险分级（读/写/执行/危险） |
-| 🚧 **拦截** | 调用如何被统一拦截和审计 |
-
-> **最佳实践**: 构建工具系统，而非工具列表。真正的系统必须是**可控、可审计、可演化**的。
-
----
-
-### Layer 3: 安全与审批系统
-一旦 Agent 能写文件、执行命令，它就成为**操作系统参与者**。
-
-**三道防御层**:
-1. **子进程管理** — 会话池、数量限制、输出截断、超时终止、自动清理
-2. **命令守卫** — 命令解析、危险命令黑名单、system hint 回传
-3. **审批系统** — 风险分级、审批模式、指纹缓存、危险模式兜底
-
-**核心原则**: 安全不能依赖"模型会守规矩"。真正的安全边界必须落在运行时。
-
----
-
-### Layer 4: 反馈与状态系统
-Agent 持续工作的关键是**不断收到反馈**：
-
-- ✅ 工具执行结果
-- ✅ 审批状态
-- ✅ 输出截断事件
-- ✅ 搜索结果量
-- ✅ 命令拒绝原因
-- ✅ 任务计划更新
-- ✅ 会话可恢复性
-
-**关键机制**: 将系统内部状态翻译成**模型能消费的反馈语言**。没有这层翻译，模型只能看到"失败"；有了这层翻译，模型才能理解原因并采取纠正行动。
-
----
-
-### Layer 5: 熵管理系统
-长期运行不可避免会积累"脏污"：
-
-| 熵源 | 表现 | 应对策略 |
-|------|------|----------|
-| Prompt 膨胀 | 越来越长 | 动态裁剪 |
-| 规则过期 | 越来越旧 | 版本管理 |
-| 上下文臃肿 | 信息过载 | 优先级过滤 |
-| 工具爆炸 | 定义增多 | 定期清理 |
-| 历史沉重 | 会话庞大 | 分层存储 |
-
-**长期策略**: 持续的熵管理——过期规则失效、长上下文压缩、低价值历史清除、项目知识可持续沉淀。
-
----
-
-## ✅ 执行检查清单
-
-启动新项目或功能前，验证以下内容：
-
-### 📝 任务定义
-- [ ] 输入契约明确（Agent 收到什么？）
-- [ ] 输出契约可验证（如何判断成功？）
-
-### 📦 上下文管理
-- [ ] 上下文按优先级装配，而非堆砌
-- [ ] 只传递任务相关上下文
-- [ ] 排除噪声（导航、广告、脚本）
-
-### 🔧 工具系统
-- [ ] 工具以 DSL 风格声明
-- [ ] 执行前验证参数
-- [ ] 风险分级并强制执行
-- [ ] 调用可被拦截和审计
-
-### 💾 状态管理
-- [ ] 中间产物被持久化
-- [ ] 状态可从检查点恢复
-- [ ] 状态臃肿时进行裁剪
-
-### 🔄 反馈机制
-- [ ] 系统错误被翻译为模型可读反馈
-- [ ] 模型理解失败原因
-
-### ⚠️ 错误处理
-- [ ] 错误被分类（网络、依赖、权限等）
-- [ ] 临时失败有重试逻辑
-- [ ] 失败升级到适当层级
-
-### 🔒 安全保障
-- [ ] 危险操作在运行时被阻止
-- [ ] 子进程执行有限制
-- [ ] 写操作限定在工作区
-
-### ✔️ 验证机制
-- [ ] 任务完成可验证
-- [ ] 证据被持久化（日志、产物、快照）
-
----
-
-## 🧠 核心哲学
-
-> **Harness = 使 Agent 可被控制并稳定操作的环境系统**
-
-**三个关键词**:
-- 📏 **约束** — Agent 必须在边界内运行
-- 🔄 **反馈** — Agent 必须理解结果，而不仅是输出
-- 🛡️ **稳定** — 系统必须可维护、可恢复
-
-**能力公式**: `Agent 能力 = Model × Environment`
-
-同样的模型，在不同系统中可能产生截然不同的结果。**环境是可复用资产，模型可以替换，但 Harness 不可跳过。**
-
----
-
-## 🚀 使用场景
-
-在以下情况应用此 Skill：
-
-1. **项目初始化** — 从零开始构建新的 Agent 项目
-2. **功能扩展** — 实现需要工具调用、上下文管理或状态持久化的新功能
-3. **架构设计** — 为 Agent 操作设计反馈循环和错误处理
-4. **安全加固** — 为可修改文件或执行命令的 Agent 建立安全边界
-5. **流水线构建** — 构建需要管理中间状态的多步骤流水线
-
-> **最佳实践**: 此 Skill 应在**项目初始化时**调用，而非事后补救。
-
----
-
-## 📁 文件结构
+本仓库在 `skills/` 下收录多份 **Cursor Agent Skill**（每份以目录为单位，入口一般为 `SKILL.md`）。它们共享同一套工程观：**模型提供智能，Harness（环境系统）提供可控制、可验证的确定性**。
 
 ```
-harness-engineering-skill/
-├── README.md          # 项目文档（英文）
-├── README.zh.md       # 项目文档（中文）
-├── SKILL.md           # Skill 定义（英文）
-└── SKILL.zh.md        # Skill 定义（中文）
+╔═══════════════════════════════════════════════════════╗
+║         Agent = Loop(Model + Harness)                 ║
+║     模型可替换；约束、反馈与验证应落在环境里           ║
+╚═══════════════════════════════════════════════════════╝
 ```
 
----
-
-## 📖 相关资源
-
-- [Agent Info Framework](https://github.com/...)
-- [SOUL.md Specification](https://github.com/...)
-- [AGENTS.md Specification](https://github.com/...)
+| | |
+|:--|:--|
+| ✅ **适合** | 想系统搭建 Agent、先画图再写码、把大项目拆成可交付版本、把模糊需求变成可粘贴执行的步骤 |
+| ❌ **不适合** | 指望单一 prompt 解决一切、跳过验收与边界讨论 |
 
 ---
 
-## 📄 License
+## 📦 `skills/` 里有什么
 
-This project is licensed under the MIT License.
+| 目录 | `SKILL.md` 中的 `name` | 一句话 | 文档入口 |
+|------|------------------------|--------|----------|
+| [`harness-engineering`](skills/harness-engineering/) | `harness-engineering` | Harness 八大要素与五层架构，指导可生产 Agent 的设计与加固 | [README](skills/harness-engineering/README.md) · [SKILL.md](skills/harness-engineering/SKILL.md) · [中文版说明](skills/harness-engineering/README.zh.md) |
+| [`harness-guide-generator-skill`](skills/harness-guide-generator-skill/) | `vibe-coding-harness-guide-generator` | 把自然语言任务变成可复制到 Agent 的分步指南与验收标准 | [README](skills/harness-guide-generator-skill/README.md) · [SKILL.md](skills/harness-guide-generator-skill/SKILL.md) |
+| [`large-project-versioned-roadmap`](skills/large-project-versioned-roadmap/) | `large-project-versioned-roadmap` | 大型工程按纵向主路径或横向模块拆成多版本路线图与技术选型建议 | [SKILL.md](skills/large-project-versioned-roadmap/SKILL.md) |
+| [`project-atlas-analyzer-skill`](skills/project-atlas-analyzer-skill/) | `repository-atlas` | 不绑定具体需求，把当前仓库浓缩成可反复引用的 Markdown 图谱 | [README](skills/project-atlas-analyzer-skill/README.md) · [SKILL.md](skills/project-atlas-analyzer-skill/SKILL.md) |
+| [`requirement-atlas-analyzer-skill`](skills/requirement-atlas-analyzer-skill/) | `requirement-atlas-analyzer` | 针对**一条**需求，梳理与现有代码的关系简报（主路径 · 分支 · 边界） | [README](skills/requirement-atlas-analyzer-skill/README.md) · [SKILL.md](skills/requirement-atlas-analyzer-skill/SKILL.md) |
+
+补充材料（随子目录附带）：
+
+- `harness-guide-generator-skill/examples/` — 指南生成示例  
+- `project-atlas-analyzer-skill/reference.md`、`requirement-atlas-analyzer-skill/reference.md` — 证据路径与审阅要点  
 
 ---
 
-### Reference & thanks
+## 🚀 怎么用
 
-Some ideas in this repo were informed by [this article on Juejin](https://juejin.cn/post/7620226704209592360). Thank you to the author for sharing.
+1. **获取本仓库**  
+   克隆或下载到本地，确保你能看到 `skills/` 与各子目录。
+
+2. **在 Cursor 里挂载 Skill**  
+   将**需要的那一个**子目录（例如 `skills/harness-engineering`）配置为 Skill：放到个人目录 `~/.cursor/skills/<目录名>/`，或当前项目的 `.cursor/skills/<目录名>/`（以你使用的 Cursor 版本文档为准）。
+
+3. **在对话里调用**  
+   使用 `@` 引用该 skill 目录，或按各 `SKILL.md` 顶部的 `description` 所描述的场景自然触发；执行规则以对应目录下的 **`SKILL.md`** 为准。
+
+4. **图谱类 Skill 的工作区**  
+   使用 `repository-atlas` 或 `requirement-atlas-analyzer` 时，请在**要被分析的项目**中打开工作区，再 `@` 对应 skill；产出路径以各 `SKILL.md` 正文为准。
 
 ---
 
-*Built with ❤️ for AI Agent Engineering*
+## 🎯 怎么选 Skill（速查）
+
+| 你想…… | 优先用 |
+|--------|--------|
+| 对齐 Agent 架构、工具治理、安全与验证 | `harness-engineering` |
+| 把一句需求变成「步骤 + 验收」的可粘贴指南 | `vibe-coding-harness-guide-generator` |
+| 大项目拆版本、定里程碑与技术栈 | `large-project-versioned-roadmap` |
+| 刚进仓，想先有一份与需求无关的仓库总览 | `repository-atlas` |
+| 已有一条具体需求，想看清改哪里、边界在哪 | `requirement-atlas-analyzer` |
+
+---
+
+## 🔗 本仓库
+
+- 主页：<https://github.com/RonnyJung2021/harness-engineering-skill>
+
+---
+
+<p align="center">
+  <sub>🧩 Made for Cursor · 方法论在 Skill，落地在仓库</sub>
+</p>
