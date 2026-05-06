@@ -1,4 +1,4 @@
-# repository-atlas — Repository Atlas 补充说明
+# project-atlas-analyzer-skill — Repository Atlas 补充说明
 
 本文件为 [SKILL.md](SKILL.md) 的延伸，按需阅读。
 

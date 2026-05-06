@@ -10,7 +10,7 @@
 
 ## 📋 简介
 
-面向 [Cursor](https://cursor.com) 的 **Agent Skill**：`repository-atlas`（**仓库图谱**）。让代理在 **不绑定具体需求** 的前提下，把当前仓库浓缩成一份可反复引用的 Markdown，减轻全仓扫描带来的上下文压力。
+面向 [Cursor](https://cursor.com) 的 **Agent Skill**：`project-atlas-analyzer-skill`（**仓库图谱**）。让代理在 **不绑定具体需求** 的前提下，把当前仓库浓缩成一份可反复引用的 Markdown，减轻全仓扫描带来的上下文压力。
 
 ---
 
@@ -18,7 +18,7 @@
 
 | 文件 / 目录 | 说明 |
 |-------------|------|
-| 📜 [`SKILL.md`](SKILL.md) | 技能主说明（`name: repository-atlas`） |
+| 📜 [`SKILL.md`](SKILL.md) | 技能主说明（`name: project-atlas-analyzer-skill`） |
 | 📎 [`reference.md`](reference.md) | 补充说明与常见证据路径 |
 | 🛠️ [`professional-readme-generator/`](professional-readme-generator/) | README 生成参考 skill（可选自用） |
 
@@ -28,7 +28,7 @@
 
 1. 📥 **克隆**本仓库（或只下载需要的文件）。
 2. ⚙️ 在 Cursor 里把本目录配置为 **Skill**（个人目录或项目 `.cursor/skills`，以你当前 Cursor 版本为准）。
-3. 💬 对话中 **@repository-atlas**，代理会按 `SKILL.md` 执行；默认在**目标项目**里生成 `docs/REPOSITORY_ATLAS.md`（具体路径以 skill 正文为准）。
+3. 💬 对话中 **@project-atlas-analyzer-skill**，代理会按 `SKILL.md` 执行；默认在**目标项目**里生成 `docs/REPOSITORY_ATLAS.md`（具体路径以 skill 正文为准）。
 
 ---
 

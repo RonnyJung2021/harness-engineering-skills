@@ -126,7 +126,7 @@
 ## 📁 文件结构
 
 ```
-vibe-coding-harness-guide-generator/
+harness-guide-generator-skill/
 ├── SKILL.md         # Skill 入口 + Harness 核心
 ├── SKILL.zh.md      # 中文版
 └── examples/        # 完整示例指南

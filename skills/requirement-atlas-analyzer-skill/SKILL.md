@@ -1,11 +1,11 @@
 ---
-name: requirement-atlas-analyzer
+name: requirement-atlas-analyzer-skill
 description: >-
   Maps a stated new requirement to existing repository code: affected areas, current
   vs target behavior, main logic deltas, ripple effects, branch logic to remove or add,
   and boundary cases—structured as a condensed Markdown brief (main → branch → edge).
   Use when the user wants 需求与代码关联分析、影响简报、实现前参考 MD、相关性图谱、
-  与现有代码常相关部分整理、需要保障单次需求上下文而不重复全仓摸索、或 @requirement-atlas-analyzer。
+  与现有代码常相关部分整理、需要保障单次需求上下文而不重复全仓摸索、或 @requirement-atlas-analyzer-skill。
 disable-model-invocation: true
 ---
 
@@ -45,7 +45,7 @@ disable-model-invocation: true
 
 ```yaml
 ---
-doc_type: requirement-atlas-analyzer
+doc_type: requirement-atlas-analyzer-skill
 generated_at: "2026-05-04"
 requirement_slug: "<slug>"
 related_paths_glob: "src/features/foo, apps/web/api"

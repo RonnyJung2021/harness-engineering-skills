@@ -1,5 +1,5 @@
 ---
-name: repository-atlas
+name: project-atlas-analyzer-skill
 description: >-
   Builds a requirement-neutral Markdown atlas of the open repository: layout, tech
   stack with evidence-backed versions, run/build entry points, client and server
@@ -12,7 +12,7 @@ description: >-
 disable-model-invocation: true
 ---
 
-# repository-atlas｜Repository Atlas（仓库图谱）
+# project-atlas-analyzer-skill｜Repository Atlas（仓库图谱）
 
 ## 目的（必须遵守）
 
@@ -122,4 +122,4 @@ disable-model-invocation: true
 
 ## 与后续需求实现的配合（给用户）
 
-用户在提新需求时，可附加：`@repository-atlas` 并说明「请先读 `docs/REPOSITORY_ATLAS.md`，再针对本需求深入相关路径」。代理应**先读图谱再定点读代码**，而不是再次全仓无差别展开。
+用户在提新需求时，可附加：`@project-atlas-analyzer-skill` 并说明「请先读 `docs/REPOSITORY_ATLAS.md`，再针对本需求深入相关路径」。代理应**先读图谱再定点读代码**，而不是再次全仓无差别展开。

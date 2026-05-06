@@ -30,10 +30,10 @@
 | 目录 | `SKILL.md` 中的 `name` | 一句话 | 文档入口 |
 |------|------------------------|--------|----------|
 | [`harness-engineering`](skills/harness-engineering/) | `harness-engineering` | Harness 八大要素与五层架构，指导可生产 Agent 的设计与加固 | [README](skills/harness-engineering/README.md) · [SKILL.md](skills/harness-engineering/SKILL.md) · [中文版说明](skills/harness-engineering/README.zh.md) |
-| [`harness-guide-generator-skill`](skills/harness-guide-generator-skill/) | `vibe-coding-harness-guide-generator` | 把自然语言任务变成可复制到 Agent 的分步指南与验收标准 | [README](skills/harness-guide-generator-skill/README.md) · [SKILL.md](skills/harness-guide-generator-skill/SKILL.md) |
+| [`harness-guide-generator-skill`](skills/harness-guide-generator-skill/) | `harness-guide-generator-skill` | 把自然语言任务变成可复制到 Agent 的分步指南与验收标准 | [README](skills/harness-guide-generator-skill/README.md) · [SKILL.md](skills/harness-guide-generator-skill/SKILL.md) |
 | [`large-project-versioned-roadmap`](skills/large-project-versioned-roadmap/) | `large-project-versioned-roadmap` | 大型工程按纵向主路径或横向模块拆成多版本路线图与技术选型建议 | [SKILL.md](skills/large-project-versioned-roadmap/SKILL.md) |
-| [`project-atlas-analyzer-skill`](skills/project-atlas-analyzer-skill/) | `repository-atlas` | 不绑定具体需求，把当前仓库浓缩成可反复引用的 Markdown 图谱 | [README](skills/project-atlas-analyzer-skill/README.md) · [SKILL.md](skills/project-atlas-analyzer-skill/SKILL.md) |
-| [`requirement-atlas-analyzer-skill`](skills/requirement-atlas-analyzer-skill/) | `requirement-atlas-analyzer` | 针对**一条**需求，梳理与现有代码的关系简报（主路径 · 分支 · 边界） | [README](skills/requirement-atlas-analyzer-skill/README.md) · [SKILL.md](skills/requirement-atlas-analyzer-skill/SKILL.md) |
+| [`project-atlas-analyzer-skill`](skills/project-atlas-analyzer-skill/) | `project-atlas-analyzer-skill` | 不绑定具体需求，把当前仓库浓缩成可反复引用的 Markdown 图谱 | [README](skills/project-atlas-analyzer-skill/README.md) · [SKILL.md](skills/project-atlas-analyzer-skill/SKILL.md) |
+| [`requirement-atlas-analyzer-skill`](skills/requirement-atlas-analyzer-skill/) | `requirement-atlas-analyzer-skill` | 针对**一条**需求，梳理与现有代码的关系简报（主路径 · 分支 · 边界） | [README](skills/requirement-atlas-analyzer-skill/README.md) · [SKILL.md](skills/requirement-atlas-analyzer-skill/SKILL.md) |
 
 补充材料（随子目录附带）：
 
@@ -54,7 +54,7 @@
    使用 `@` 引用该 skill 目录，或按各 `SKILL.md` 顶部的 `description` 所描述的场景自然触发；执行规则以对应目录下的 **`SKILL.md`** 为准。
 
 4. **图谱类 Skill 的工作区**  
-   使用 `repository-atlas` 或 `requirement-atlas-analyzer` 时，请在**要被分析的项目**中打开工作区，再 `@` 对应 skill；产出路径以各 `SKILL.md` 正文为准。
+   使用 `project-atlas-analyzer-skill` 或 `requirement-atlas-analyzer-skill` 时，请在**要被分析的项目**中打开工作区，再 `@` 对应 skill；产出路径以各 `SKILL.md` 正文为准。
 
 ---
 
@@ -63,10 +63,10 @@
 | 你想…… | 优先用 |
 |--------|--------|
 | 对齐 Agent 架构、工具治理、安全与验证 | `harness-engineering` |
-| 把一句需求变成「步骤 + 验收」的可粘贴指南 | `vibe-coding-harness-guide-generator` |
+| 把一句需求变成「步骤 + 验收」的可粘贴指南 | `harness-guide-generator-skill` |
 | 大项目拆版本、定里程碑与技术栈 | `large-project-versioned-roadmap` |
-| 刚进仓，想先有一份与需求无关的仓库总览 | `repository-atlas` |
-| 已有一条具体需求，想看清改哪里、边界在哪 | `requirement-atlas-analyzer` |
+| 刚进仓，想先有一份与需求无关的仓库总览 | `project-atlas-analyzer-skill` |
+| 已有一条具体需求，想看清改哪里、边界在哪 | `requirement-atlas-analyzer-skill` |
 
 ---
 
